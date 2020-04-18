@@ -3,8 +3,8 @@ import config as c
 import asyncio
 import modules
 import logging
-import pydub
 import os
+
 
 class TelethonManager:
 
@@ -25,6 +25,7 @@ class TelethonManager:
         # Start
         self.client.start(bot_token=c.BOT_TOKEN)
         asyncio.get_event_loop().run_forever()
+
 
 if __name__ == "__main__":
     logger = logging.getLogger()

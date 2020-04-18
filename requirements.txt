@@ -1,7 +1,8 @@
 ffmpeg==1.4
 pyaes==1.6.1
 pyasn1==0.4.8
-pydub==0.23.1
 rsa==4.0
-Telethon>=1.10.10
+imageio==2.5
+Telethon
+moviepy
 youtube-dl>=2020.1.15

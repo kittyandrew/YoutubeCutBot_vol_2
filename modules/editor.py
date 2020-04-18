@@ -10,13 +10,15 @@ import re
 import os
 Event = Union[Message, events.NewMessage.Event]
 
+
 def links_extractor(text):
     raw_url_pattern = r""
     url_pattern = re.compile(raw_url_pattern)
     return url_pattern.findall(text)
 
+
 async def init(bot, sources):
-    @bot.on(events.NewMessage(pattern="^/(start|new).*?$"))
+    @bot.on(events.NewMessage(pattern="^/(start|new|link).*?$"))
     async def start_handler(event:Event):
         await event.reply("Please send me source (link):\n"
                           "`https://link.to.youtube.vid`")
@@ -60,7 +62,7 @@ async def init(bot, sources):
 
                         # Getting attributes of the uploaded file
                         try:
-                            attributes = get_attributes(cutted_path)
+                            attributes = get_attributes(cutted_path)[0]
                         except Exception as e:
                             attributes = None
 
@@ -69,14 +71,16 @@ async def init(bot, sources):
                             await client.send_file(
                                 event.chat_id,
                                 file,
-                                attributes=attributes[0],
-                                reply_to=event
+                                attributes=attributes,
+                                reply_to=event,
+                                #force_document=True
                             )
                         except:
                             await client.send_file(
                                 event.chat_id,
                                 file,
-                                attributes=attributes[0]
+                                attributes=attributes,
+                                #force_document=True
                             )
 
                 finally:
