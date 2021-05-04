@@ -1,7 +1,7 @@
 ffmpeg==1.4
 pyaes==1.6.1
 pyasn1==0.4.8
-rsa==4.0
+rsa==4.7
 imageio==2.5
 Telethon
 moviepy
